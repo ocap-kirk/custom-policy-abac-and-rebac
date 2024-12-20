@@ -15,11 +15,8 @@ allow {
     input.resource.attributes.status == "draft"
     input.action == "write"
     
-    # Get resource identifier
-    resource_id := sprintf("Report:%s", [input.resource.key])
-    
     # Check if editor role is in calculated rebac roles
-    "editor" in permit_rebac.roles(input).roles[resource_id]
+    "editor" in data.permit.rebac.rebac_roles
     
     print("Allowing editor write access on draft report")
 }
