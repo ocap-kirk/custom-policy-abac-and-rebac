@@ -15,5 +15,5 @@ allow {
     
     # Check if editor role is in calculated rebac roles
     "editor" in data.permit.rebac.rebac_roles
-    "viewer" in data.permit.rebac.rebac_roles
+    # "viewer" in data.permit.rebac.rebac_roles
 }
