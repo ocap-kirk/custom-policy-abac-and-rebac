@@ -17,13 +17,15 @@ allow {
     "editor" in data.permit.rebac.rebac_roles
 }
 
-# Allow viewer read access on draft reports
+# Allow viewer actions on draft reports
 allow {
-    # Check if it's a Report in draft status and the action is "read"
+    # Check if it's a Report in draft status
     input.resource.type == "Report"
     input.resource.attributes.status == "draft"
-    input.action == "read"
     
     # Check if viewer role is in calculated rebac roles
     "viewer" in data.permit.rebac.rebac_roles
+
+    # Check if the action is allowed for viewers
+    input.action in data.role_permissions.Report.viewer.grants.Report
 }
